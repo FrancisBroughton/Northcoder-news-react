@@ -1,0 +1,28 @@
+.navbar {
+  border: 1px solid rgba(0, 0, 0, 0.89);
+  background-color: rgba(0, 0, 0, 0.89);
+  padding: 20px;
+  
+}
+
+.navbar a {
+  font-family: monospace;
+  font-size: 20px;
+  color: white;
+  position: relative;
+  top: -220px;
+  left: -60px;
+  display: block;
+  margin-bottom: 15px
+}
+
+img {
+  max-height:100%;
+  max-width:100%;
+  padding:20px;
+  margin: auto;
+  display: block;
+  position: relative;
+  top: -50px;
+  right: -120px
+}

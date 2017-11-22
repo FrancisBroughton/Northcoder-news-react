@@ -1,4 +1,19 @@
+h1 {
+  font-family: monospace;
+  color: white;
+  font-size: 31px;
+  padding-top:29px
+}
 
+.navbar ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0px;
+
+}
+ .navbar li {
+   display: inline-block
+ }
 .navbar {
   background-color: rgba(228, 200, 200, 0.651);
   border-bottom: solid 5px rgba(190, 171, 171, 0.137)
@@ -9,23 +24,17 @@
   font-size: 20px;
   color: white;
   margin-bottom: 20px;
-  padding-right: 20px;
-  position: relative;
-  left: -145px;
-  bottom: -35px
+  padding-right: 20px
 }
 
 .material-icons {
-  position: relative;
-  left: -140px;
-  bottom: -41px;
   color: white
 }
+
 .searchbox {
-  position: relative;
-  right: -150px;
-  bottom: -30px
+  text-align: right
 }
+
 img {
   height:100px;
   width:140px;

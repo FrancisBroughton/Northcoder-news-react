@@ -3,13 +3,13 @@ Northcoders News is a social news aggregation, web content rating, and discussio
 
 Below is a brief summary for each page:
 
-**Home
+**Home**
 - Renders Top 10 articles
 
-**Articles 
+**Articles**
 - Renders all articles
 
-**Topics 
+**Topics** 
 - Renders all topics
 
 # Main NPM packages used

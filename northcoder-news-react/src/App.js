@@ -2,7 +2,9 @@ import React from 'react';
 import './css/App.css';
 import Articles from './components/Articles'; 
 import Topics from './components/Topics'; 
+import Home from './components/Home';
 import pic from './css/image.jpg';
+
 import {
   BrowserRouter,
   Route,
@@ -18,37 +20,45 @@ class App extends React.Component {
         <div className="main-container ">
 
           <nav className="navbar col-12">
-          
-          <div className="pic col-3">
-          <img src={pic} alt="background image" /> 
+
+          <div className="pic col-2">
+          <img src={pic} alt="background pic" /> 
           </div>        
-          
-          <div className="links col-5">
-          <i className="material-icons">favorite_border</i> 
-          <Link to='/Home'> Home </Link>
-          <i class="material-icons">description</i>
-          <Link to='/Articles'> Articles </Link>
-          <i class="material-icons">message</i>
-          <Link to='/Topics'> Topics </Link>
+         
+          <div className="links col-6">
+            <h1> Northcoders News </h1>
+            <ul>
+              <li>
+              <i className="material-icons">favorite_border</i> 
+              <Link to='/'> Home </Link> 
+              </li>
+
+              <li>
+              <i className="material-icons">description</i>
+              <Link to='/Articles'> Articles </Link>
+              </li>
+
+              <li>
+              <i className="material-icons">message</i>
+              <Link to='/Topics'> Topics </Link>
+              </li>
+
+            </ul>
           </div> 
 
           <div className="searchbox col-4">
-          <form>
-            <input type='text' placeholder="Search..." />
-            <input type='submit' value='search' />
-          </form>
+            <form>
+              <input type='text' placeholder="Search..." /> 
+              <input type='submit' value='search' /> 
+            </form>
           </div>
+
           </nav>
 
-
-          <div className="body">
-
-          </div>
-
           <Switch>
-            <Route path='/Home' component={App} />
-            <Route path='/Articles' component={Articles} />
-            <Route path='/Topics' component={Topics} />
+            <Route exact path='/' component={Home} />
+            <Route exact path='/Articles' component={Articles} />
+            <Route exact path='/Topics' component={Topics} />
           </Switch>
       </div> 
       </BrowserRouter>

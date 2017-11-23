@@ -32,7 +32,8 @@ h1 {
 }
 
 .searchbox {
-  text-align: right
+  text-align: right;
+  margin-top: 50px
 }
 
 img {

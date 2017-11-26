@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchAllArticles } from '../actions/articles';
 import '../css/Home.css';
 
@@ -29,7 +30,7 @@ class Home extends Component {
                         return (
                             <div key={i} className="article">
                                 <ul>
-                                    <li> <span>Article ID:</span> {article._id}</li>
+                                    <li> <span>Article ID:</span><Link to={`/Articles/${article._id}`}>{article._id}</Link> </li>
                                     <li> <span>Article Title:</span> {article.title}</li>
                                     <li> <span>Created By: </span>{article.created_by}</li> <br />
                                     <li> {article.body}</li>

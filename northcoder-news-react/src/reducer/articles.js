@@ -3,7 +3,11 @@ import * as types from '../types'
 export const initialState = {
   loading: false,
   error: null,
-  payload: []
+  payload: [],
+  articlePayload: [],
+  articleError: null,
+  comments: [],
+  commentsError: null
 };
 
 export default (prevState = initialState, action) => {
@@ -30,10 +34,24 @@ export default (prevState = initialState, action) => {
         payload: []
       });
 
-    case types.FETCH_COMMENTS_BY_ART_ID_SUCCESS:
+      case types.FETCH_ARTICLES_BY_ART_ID_SUCCESS:
       return Object.assign({}, prevState, {
         loading: !prevState.loading,
-        error: null,
+        articleError: null,
+        articlePayload: action.articlePayload
+      });
+
+      case types.FETCH_ARTICLES_BY_ART_ID_FAILURE:
+      return Object.assign({}, prevState, {
+        loading: false,
+        articleError: action.articleError,
+        articlePayload: []
+      });
+
+      case types.FETCH_COMMENTS_BY_ART_ID_SUCCESS:
+      return Object.assign({}, prevState, {
+        loading: !prevState.loading,
+        commentsError: null,
         comments: action.comments
       });
 
@@ -41,7 +59,7 @@ export default (prevState = initialState, action) => {
       return Object.assign({}, prevState, {
         loading: false,
         commentsError: action.commentsError,
-        payload: []
+        comments: []
       });
 
     default:

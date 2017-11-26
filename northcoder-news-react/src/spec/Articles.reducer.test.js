@@ -7,8 +7,10 @@ import {
     fetchArticlesRequest,
     fetchArticlesSuccess,
     fetchArticlesFailure,
+    fetchArticlesByArtIdSuccess,
+    fetchArticlesByArtIdFailure,
     fetchCommentsByArtIdSuccess,
-    fetchCommentsByArtIdFailure,
+    fetchCommentsByArtIdFailure
 } from '../actions/articles';
 
 const prevState = initialState || prevState;
@@ -48,22 +50,37 @@ describe('articles reducer', () => {
             expect(newState.articles.loading).to.be.equal(false)
             expect(newState.articles.payload).to.be.eql([])
         });
+        it('handles fetchArticlesByArtIdSuccess', () => {
+            const data = "hello";
+            const action = fetchArticlesByArtIdSuccess(data);
+            const newState = articlesReducer(prevState, action);
+            expect(newState.articles.articlePayload).to.be.equal("hello");
+            expect(newState.articles.articleError).to.be.equal(null);
+            expect(newState.articles.loading).to.be.equal(true);
+        });
+        it('handles fetchArticlesByArtIdFailure', () => {
+            const error = 'error';
+            const action = fetchArticlesByArtIdFailure(error);
+            const newState = articlesReducer(prevState, action);
+            expect(newState.articles.articleError).to.be.equal('error')
+            expect(newState.articles.loading).to.be.equal(false)
+            expect(newState.articles.articlePayload).to.be.eql([])
+        });
         it('handles fetchCommentsByArtIdSuccess', () => {
             const data = "hello";
             const action = fetchCommentsByArtIdSuccess(data);
             const newState = articlesReducer(prevState, action);
-            expect(newState.articles.comments).to.be.equal("hello");
-            expect(newState.articles.error).to.be.equal(null);
+            expect(newState.articles.comments).to.be.eql("hello");
+            expect(newState.articles.commentsError).to.be.equal(null);
             expect(newState.articles.loading).to.be.equal(true);
         });
         it('handles fetchCommentsByArtIdFailure', () => {
             const error = 'error';
             const action = fetchCommentsByArtIdFailure(error);
             const newState = articlesReducer(prevState, action);
-            console.log(newState)
             expect(newState.articles.commentsError).to.be.equal('error')
             expect(newState.articles.loading).to.be.equal(false)
-            expect(newState.articles.payload).to.be.eql([])
+            expect(newState.articles.comments).to.be.eql([])
         });
     })
 });    

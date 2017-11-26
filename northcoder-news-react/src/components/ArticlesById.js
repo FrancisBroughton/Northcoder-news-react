@@ -14,9 +14,11 @@ class ArticlesById extends Component {
     }
 
     render() {
+        {console.log("bbbbbbbbbb",this.props.articles)}
         return (
             <div className="body">
 
+                
                 <h1>{this.props.articles.title}</h1>
 
                 <ul>
@@ -26,10 +28,10 @@ class ArticlesById extends Component {
                 </ul>
 
                 <h3>Comments</h3>
-
+                
                 {this.props.comments && this.props.comments.map((comment, i) => {
                     return (
-                        <div className="comment">
+                        <div key={i} className="comment">
                             <ul>
                                 <li> {comment.body}</li>
                                 <li> By: {comment.created_by}</li>
@@ -45,8 +47,8 @@ class ArticlesById extends Component {
 function mapStateToProps(state) {
     return {
         loading: state.articles.loading,
-        error: state.articles.error,
-        articles: state.articles.payload,
+        error: state.articles.articleError,
+        articles: state.articles.articlePayload,
         comments: state.articles.comments,
         commentsError: state.articles.commentsError
     };

@@ -23,6 +23,20 @@ describe('Actions for Articles', () => {
             payload: error
         });
     });
+    it('should return the correct action for fetchArticlesByArtIdSuccess', () => {
+        const data = [1, 2, 3, 4];
+        expect(articlesActions.fetchArticlesByArtIdSuccess(data)).to.eql({
+            type: types.FETCH_ARTICLES_BY_ART_ID_SUCCESS,
+            articlePayload: data
+        });
+    });
+    it('should return the correct action for fetchArticlesByArtIdFailure', () => {
+        const error = 'error';
+        expect(articlesActions.fetchArticlesByArtIdFailure(error)).to.eql({
+            type: types.FETCH_ARTICLES_BY_ART_ID_FAILURE,
+            articleError: error
+        });
+    });    
     it('should return the correct action for fetchCommentsByArtIdSuccess', () => {
         const data = [1, 2, 3, 4];
         expect(articlesActions.fetchCommentsByArtIdSuccess(data)).to.eql({

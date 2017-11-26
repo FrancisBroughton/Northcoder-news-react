@@ -21,6 +21,19 @@ export function fetchArticlesFailure(error) {
     };
 }
 
+export function fetchArticlesByArtIdSuccess(data) {
+    return {
+        type: types.FETCH_ARTICLES_BY_ART_ID_SUCCESS,
+        articlePayload: data
+    };
+}
+export function fetchArticlesByArtIdFailure(error) {
+    return {
+        type: types.FETCH_ARTICLES_BY_ART_ID_FAILURE,
+        articleError: error
+    };
+}
+
 export function fetchCommentsByArtIdSuccess(data) {
     return {
         type: types.FETCH_COMMENTS_BY_ART_ID_SUCCESS,
@@ -51,10 +64,10 @@ export function fetchArticlesByArticlesId(id){
     return function (dispatch){
         axios.get(`https://northcoders-news-api.herokuapp.com/api/articles/${id}`)
         .then(res => {
-            dispatch(fetchArticlesSuccess(res.data))
+            dispatch(fetchArticlesByArtIdSuccess(res.data))
         })
         .catch (err => {
-            dispatch(fetchArticlesFailure(err))
+            dispatch(fetchArticlesByArtIdFailure(err))
         })
     }
 }

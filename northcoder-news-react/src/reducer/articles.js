@@ -27,10 +27,24 @@ export default (prevState = initialState, action) => {
       return Object.assign({}, prevState, {
         loading: false,
         error: action.payload,
-        data: []
+        payload: []
       });
-    
+
+    case types.FETCH_COMMENTS_BY_ART_ID_SUCCESS:
+      return Object.assign({}, prevState, {
+        loading: !prevState.loading,
+        error: null,
+        comments: action.comments
+      });
+
+    case types.FETCH_COMMENTS_BY_ART_ID_FAILURE:
+      return Object.assign({}, prevState, {
+        loading: false,
+        commentsError: action.commentsError,
+        payload: []
+      });
+
     default:
-    return prevState;
+      return prevState;
   }
 };     

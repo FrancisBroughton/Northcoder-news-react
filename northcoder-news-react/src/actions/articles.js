@@ -21,12 +21,10 @@ export function fetchArticlesFailure(error) {
     };
 }
 
-export function fetchAllArticles(){
+export function fetchAllArticles(data){
     return function (dispatch){
-        dispatch(fetchArticlesRequest())
         axios.get('https://northcoders-news-api.herokuapp.com/api/articles')
         .then(res => {
-            console.log(res)
             dispatch(fetchArticlesSuccess(res.data.articles))
         })
         .catch (err => {
@@ -34,3 +32,4 @@ export function fetchAllArticles(){
         })
     }
 }
+

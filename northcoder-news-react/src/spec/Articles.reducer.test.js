@@ -6,7 +6,7 @@ import * as types from '../types'
 import {
     fetchArticlesRequest,
     fetchArticlesSuccess,
-    fetchArticlesFailure
+    fetchArticlesFailure,
 } from '../actions/articles';
 
 const prevState = initialState || prevState;
@@ -38,7 +38,7 @@ describe('articles reducer', () => {
             expect(newState.articles.error).to.be.equal(null);
             expect(newState.articles.loading).to.be.equal(true);
         });
-        it('should return the correct action for fetchArticlesFailure', () => {
+        it('handles fetchArticlesFailure', () => {
             const error = 'error';
             const action = fetchArticlesFailure(error);
             const newState = articlesReducer(prevState, action);

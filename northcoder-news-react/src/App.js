@@ -1,6 +1,7 @@
 import React from 'react';
 import './css/App.css';
-import Articles from './components/Articles'; 
+import Articles from './components/Articles';
+import ArticlesById from './components/ArticlesById' 
 import Topics from './components/Topics'; 
 import Home from './components/Home';
 import pic from './css/image.jpg';
@@ -58,6 +59,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/Articles' component={Articles} />
+            <Route exact path='/Articles/:articles_id' component={ArticlesById} />
             <Route exact path='/Topics' component={Topics} />
           </Switch>
       </div> 

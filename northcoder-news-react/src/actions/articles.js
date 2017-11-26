@@ -33,3 +33,15 @@ export function fetchAllArticles(data){
     }
 }
 
+export function fetchArticlesByArticlesId(id){
+    return function (dispatch){
+        axios.get(`https://northcoders-news-api.herokuapp.com/api/articles/${id}`)
+        .then(res => {
+            dispatch(fetchArticlesSuccess(res.data))
+        })
+        .catch (err => {
+            dispatch(fetchArticlesFailure(err))
+        })
+    }
+}
+

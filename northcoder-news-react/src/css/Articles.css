@@ -1,0 +1,53 @@
+
+.artById {
+    padding: 15px;
+    margin:20px;
+    background-color : rgba(206, 203, 203, 0.562)
+}
+.artById h2 {
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 20px
+}
+
+ul {
+    padding-left: 20px;
+    padding-top: 0;
+    padding-bottom:0
+   
+}
+
+.comment {
+    border: 1px solid rgba(206, 203, 203, 0.562) ;
+    background-color: white;
+    margin: 15px
+}
+
+.commentBox {
+    padding: 15px;
+    margin:20px;
+    height:280px;
+    background-color: rgba(206, 203, 203, 0.562)
+}
+
+.commentSection {
+    border: 2px rgba(206, 203, 203, 0.562);
+    padding: 15px;
+    margin:20px;
+    background-color: rgba(206, 203, 203, 0.562)
+
+}
+
+.submitComment {
+    height: 100px;
+    width: 1100px
+} 
+.submitButton {
+    margin-top : 5px
+}
+h3 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 25px;
+    font-weight: bold
+}

@@ -6,11 +6,39 @@ import '../css/Articles.css';
 class ArticlesById extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            username : '',
+            comment : ''
+        }
+        this.handleUsernameChange = this.handleUsernameChange.bind(this);
+        this.handleCommentsChange = this.handleCommentsChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    handleUsernameChange(event) {
+        event.preventDefault()
+        this.setState({
+            username: event.target.value
+        })
+    }
+    handleCommentsChange(event) {
+        event.preventDefault()
+        this.setState({
+            comment: event.target.value
+        })
+    }
+    handleSubmit(event) {
+        event.preventDefault()
+        this.setState({
+            username: this.state.username,
+            comment:this.state.comment
+             
+        })
     }
 
     componentDidMount() {
         this.props.fetchArticlesByArticlesId(this.props.match.params.articles_id)
         this.props.fetchCommentsByArticlesId(this.props.match.params.articles_id)
+
     }
 
     render() {
@@ -29,13 +57,16 @@ class ArticlesById extends Component {
                 <form className="commentBox">
                 <h3> Add comments here </h3>
                     Username:<br/>
-                    <input type="text" className="username" value="Enter username here"/>
+                    <input type="text" className="username" onSubmit={this.handleUsernameSubmit} value={this.state.username} 
+                    onChange={this.handleUsernameChange.bind(this)}
+                    />
                     <br/><br/>
 
-                    <input type="text" className="submitComment" value="Post a comment..."/>
+                    <textarea type="text" className="submitComment" onSubmit={this.handleCommentsSubmit} value={this.state.comment}
+                    onChange={this.handleCommentsChange.bind(this)}/>
                     <br/>
                     
-                    <input type="submit" className="submitButton" value="Submit"/>
+                    <input type="submit" className="submitButton" value="Submit" />
                     <input type="reset" className="submitButton" value="Reset"/>
                    
                 </form>
@@ -55,12 +86,13 @@ class ArticlesById extends Component {
                 })}
                 </div>
             </div>
-                                            )
+        )
     }
 }
+
 function mapStateToProps(state) {
     return {
-                                                loading: state.articles.loading,
+        loading: state.articles.loading,
         error: state.articles.articleError,
         articles: state.articles.articlePayload,
         comments: state.articles.comments,
@@ -69,12 +101,12 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
     return {
-                                                fetchArticlesByArticlesId: (id) => {
-                                                dispatch(fetchArticlesByArticlesId(id));
-                                            },
+        fetchArticlesByArticlesId: (id) => {
+        dispatch(fetchArticlesByArticlesId(id));
+        },
         fetchCommentsByArticlesId: (id) => {
-                                                dispatch(fetchCommentsByArticlesId(id));
-                                            }
+        dispatch(fetchCommentsByArticlesId(id));
+        }
     };
 }
 

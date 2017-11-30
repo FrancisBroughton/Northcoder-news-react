@@ -30,7 +30,7 @@ export default (prevState = initialState, action) => {
     case types.FETCH_ARTICLES_FAILURE:
       return Object.assign({}, prevState, {
         loading: false,
-        error: action.payload,
+        error: action.error,
         payload: []
       });
 

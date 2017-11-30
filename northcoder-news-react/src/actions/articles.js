@@ -17,7 +17,7 @@ export function fetchArticlesSuccess(data) {
 export function fetchArticlesFailure(error) {
     return {
         type: types.FETCH_ARTICLES_FAILURE,
-        payload: error
+        error: error
     };
 }
 
@@ -73,7 +73,6 @@ export function fetchArticlesByArticlesId(id){
 }
 
 export function fetchCommentsByArticlesId(id){
-    console.log("in fetchCommentsByArticlesId")
     return function (dispatch){
         axios.get(`https://northcoders-news-api.herokuapp.com/api/articles/${id}/comments`)
         .then(res => {

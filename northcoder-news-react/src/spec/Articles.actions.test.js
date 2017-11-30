@@ -1,6 +1,7 @@
 
 import { expect } from 'chai';
 import * as articlesActions from '../actions/articles';
+import * as topicsActions from '../actions/topics';
 import * as types from '../types';
 
 describe('Actions for Articles', () => {
@@ -20,7 +21,7 @@ describe('Actions for Articles', () => {
         const error = 'error';
         expect(articlesActions.fetchArticlesFailure(error)).to.eql({
             type: types.FETCH_ARTICLES_FAILURE,
-            payload: error
+            error: error
         });
     });
     it('should return the correct action for fetchArticlesByArtIdSuccess', () => {
@@ -50,6 +51,27 @@ describe('Actions for Articles', () => {
             type: types.FETCH_COMMENTS_BY_ART_ID_FAILURE,
             commentsError: error
         });
-
     });
-});
+});   
+
+describe('Actions for topics', () => { 
+    it('should return the correct action for fetchtopicsRequest', () => {
+        expect(topicsActions.fetchTopicsRequest()).to.eql({
+            type: types.FETCH_TOPICS_REQUEST
+        });
+    });
+    it('should return the correct action for fetchTopicsSuccess', () => {
+        const data = [1, 2, 3, 4];
+        expect(topicsActions.fetchTopicsSuccess(data)).to.eql({
+            type: types.FETCH_TOPICS_SUCCESS,
+            payload : data
+        });
+    });
+    it('should return the correct action for fetchTopicsFailure', () => {
+        const error = 'error';
+        expect(topicsActions.fetchTopicsFailure(error)).to.eql({
+            type: types.FETCH_TOPICS_FAILURE,
+            error: error
+        });    
+    });
+});    

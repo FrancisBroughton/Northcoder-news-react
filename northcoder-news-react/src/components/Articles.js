@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAllArticles } from '../actions/articles';
 import {Link} from 'react-router-dom';
+import '../css/Articles.css';
 
 class Articles extends Component {
-  constructor(props) {
-    super(props)
-}
 
 componentDidMount() {
     this.props.fetchAllArticles()
@@ -14,23 +12,21 @@ componentDidMount() {
 
 render() {
     return (
-        <div className="body">
-
+        <div className="body container">
+        <div className="col-md-12">
+        <h1>Northcoders News</h1>
         <div className="title">
-        <ul>
-            <li><i className="fa fa-heart"></i></li> 
-            <li><h1>All articles</h1></li>
-            <li><i className="fa fa-heart"></i></li> 
-        </ul>    
+        <h2>All Articles</h2>
+        </div>
         </div>
 
             {this.props.articles.map((article, i) => {
                     return (
                         <div key={i} className="article">
                             <ul>
-                                <li> <span> Article ID:</span> <Link to={`/Articles/${article._id}`}>{article._id}</Link></li>
-                                <li> <span>Article Title:</span> {article.title}</li>
-                                <li> <span>Created By: </span>{article.created_by}</li> <br />
+                                <li> <span>Article: </span> <Link to={`/Articles/${article._id}/comments`}>{article.title}</Link> </li>
+                                <li> <span>Created By: </span>{article.created_by}</li> 
+                                <li> <span>Votes: </span>{article.votes}</li><br />
                                 <li> {article.body}</li>
                             </ul>
                         </div>

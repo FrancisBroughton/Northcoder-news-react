@@ -5,9 +5,6 @@ import { fetchAllArticles } from '../actions/articles';
 import '../css/Home.css';
 
 class Home extends Component {
-    constructor(props) {
-        super(props)
-    }
 
     componentDidMount() {
         this.props.fetchAllArticles()
@@ -15,29 +12,25 @@ class Home extends Component {
 
     render() {
         return (
-            <div className="body">
-
-            <div className="title">
-            <ul>
-                <li><i className="fa fa-heart"></i></li> 
-                <li><h1>Latest Articles</h1></li>
-                <li><i className="fa fa-heart"></i></li> 
-            </ul>    
+            <div className="body container">
+            <div className="col-md-12">
+                <h1> Northcoders News </h1>
+                <div className="title">
+                <h2>Latest Articles</h2>
+            </div>
             </div>
 
-                {this.props.articles.map((article, i) => {
-                    if (i < 10) {
+                {this.props.articles.slice(0,10).map((article, i) => {
                         return (
                             <div key={i} className="article">
                                 <ul>
-                                    <li> <span>Article ID:</span><Link to={`/Articles/${article._id}`}>{article._id}</Link> </li>
-                                    <li> <span>Article Title:</span> {article.title}</li>
-                                    <li> <span>Created By: </span>{article.created_by}</li> <br />
+                                    <li> <span>Article: </span><Link to={`/Articles/${article._id}/comments`}>{article.title}</Link></li>
+                                    <li> <span>Created By: </span>{article.created_by}</li> 
+                                    <li> <span>Votes: </span>{article.votes}</li><br />
                                     <li> {article.body}</li>
                                 </ul>
                             </div>
                         )
-                    }
                 })}
             </div>
         );

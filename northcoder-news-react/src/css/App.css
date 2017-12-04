@@ -1,7 +1,7 @@
-h1 {
-  font-family: monospace;
+.links h1 {
   color: white;
-  font-size: 31px;
+  font-weight: bold;
+  font-size: 33px;
   padding-top:29px
 }
 
@@ -9,18 +9,22 @@ h1 {
   list-style: none;
   padding: 0;
   margin-bottom: 0px;
-
 }
+
+.navbar ul li i {
+  font-size: 16px;
+}
+
  .navbar li {
-   display: inline-block
+   display: inline-block;
+   margin-right: 10px;
  }
 .navbar {
-  background-color: rgba(228, 200, 200, 0.651);
-  border-bottom: solid 5px rgba(190, 171, 171, 0.137)
+  background-color: rgb(193, 17, 56);
+  height :50px 
 }
 
 .navbar a {
-  font-family: monospace;
   font-size: 20px;
   color: white;
   margin-bottom: 20px;
@@ -33,7 +37,16 @@ h1 {
 
 .searchbox {
   text-align: right;
-  margin-top: 50px
+  margin-top: 0px;
+  
+}
+
+.searchbox form {
+  float:right;
+}
+
+.searchbox input[type='text'] {
+  margin-right:10px;
 }
 
 img {

@@ -1,4 +1,14 @@
+.article {
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #d6d4d4;
+    margin: 20px;
+    background-color: rgba(234, 234, 234, 0.562);
+} 
 
+.article li {
+    color: black
+}
 .artById {
     padding: 15px;
     margin:20px;
@@ -15,13 +25,13 @@ ul {
     padding-left: 20px;
     padding-top: 0;
     padding-bottom:0
-   
 }
 
 .comment {
     border: 1px solid rgba(206, 203, 203, 0.562) ;
     background-color: white;
-    margin: 15px
+    margin: 15px;
+    border-radius: 10px;
 }
 
 .commentBox {
@@ -44,10 +54,11 @@ ul {
 }
 .submitComment {
     height: 100px;
-    width: 1100px
+    width: 100%;
 } 
 .submitButton {
-    margin-top : 5px
+    margin-top : 15px;
+    margin-right: 10px;
 }
 h3 {
     font-family: Verdana, Geneva, Tahoma, sans-serif;

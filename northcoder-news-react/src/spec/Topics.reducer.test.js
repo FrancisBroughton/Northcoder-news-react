@@ -6,7 +6,9 @@ import * as types from '../types'
 import {
     fetchTopicsRequest,
     fetchTopicsSuccess,
-    fetchTopicsFailure
+    fetchTopicsFailure,
+    fetchArticlesBySlugSuccess,
+    fetchArticlesBySlugFailure,
 } from '../actions/topics';
 
 const prevState = initialState || prevState;
@@ -45,6 +47,22 @@ describe ('topics reducer',() => {
             expect(newState.topics.error).to.be.equal('error')
             expect(newState.topics.loading).to.be.equal(false)
             expect(newState.topics.payload).to.be.eql([])
+        });
+        it('handles fetchArticlesBySlugSuccess', () => {
+            const data = "hello";
+            const action = fetchArticlesBySlugSuccess(data);
+            const newState = topicsReducer(prevState, action);
+            expect(newState.topics.topicPayload).to.be.equal("hello");
+            expect(newState.topics.topicError).to.be.equal(null);
+            expect(newState.topics.loading).to.be.equal(true);
+        });
+        it('handles fetchArticlesBySlugFailure', () => {
+            const error = 'error';
+            const action = fetchArticlesBySlugFailure(error);
+            const newState = topicsReducer(prevState, action);
+            expect(newState.topics.topicError).to.be.equal('error')
+            expect(newState.topics.loading).to.be.equal(false)
+            expect(newState.topics.topicPayload).to.be.eql([])
         });
     })
 })

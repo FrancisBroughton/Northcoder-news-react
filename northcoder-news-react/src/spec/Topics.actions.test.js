@@ -22,4 +22,18 @@ describe('Actions for topics', () => {
             error: error
         });    
     });
+    it('should return the correct action for fetchArticlesBySlugSuccess', () => {
+        const data = [1, 2, 3, 4];
+        expect(topicsActions.fetchArticlesBySlugSuccess(data)).to.eql({
+            type: types.FETCH_ARTICLES_BY_SLUG_SUCCESS,
+            topicPayload : data
+        });
+    });
+    it('should return the correct action for fetchArticlesBySlugFailure', () => {
+        const error = 'error';
+        expect(topicsActions.fetchArticlesBySlugFailure(error)).to.eql({
+            type: types.FETCH_ARTICLES_BY_SLUG_FAILURE,
+            topicError: error
+        });    
+    });
 });

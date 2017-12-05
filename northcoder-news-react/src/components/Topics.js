@@ -24,7 +24,7 @@ class Topics extends Component {
           return (
             <div key={i} className="article">
               <ul>
-                <li> <Link to={`/Topics`}>{topic.title}</Link></li>
+                <li> <Link to={`/Topics/${topic.slug}/articles`}>{topic.title}</Link></li>
                 </ul>
             </div>
           )
@@ -42,9 +42,9 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-fetchAllTopics: (data) => {
-  dispatch(fetchAllTopics());
-}
+      fetchAllTopics: (data) => {
+        dispatch(fetchAllTopics());
+      }
       }
   };
 

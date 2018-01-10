@@ -37,7 +37,7 @@ export function fetchArticlesBySlugFailure(error) {
 
 export function fetchAllTopics (data) {
     return function(dispatch){
-        axios.get('https://northcoders-news-api.herokuapp.com/api/topics')
+        axios.get('https://jredfern-northcoders-news-api.herokuapp.com/api/topics')
         .then (res => {
             dispatch(fetchTopicsSuccess(res.data.topics))
         })
@@ -49,7 +49,7 @@ export function fetchAllTopics (data) {
 
 export function fetchArticlesBySlug (slug) {
     return function(dispatch){
-        axios.get(`https://northcoders-news-api.herokuapp.com/api/topics/${slug}/articles`)
+        axios.get(`https://jredfern-northcoders-news-api.herokuapp.com/api/topics/${slug}/articles`)
         .then(res => {
             console.log(res.data)
             dispatch(fetchArticlesBySlugSuccess(res.data))

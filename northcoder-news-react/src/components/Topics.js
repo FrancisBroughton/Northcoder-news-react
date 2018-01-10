@@ -24,7 +24,7 @@ class Topics extends Component {
           return (
             <div key={i} className="article">
               <ul>
-                <li> <Link to={`/Topics/${topic.slug}/articles`}>{topic.title}</Link></li>
+                <li> <Link to={`/Topics/${topic._id}/${topic.slug}/articles`}>{topic.title}</Link></li>
                 </ul>
             </div>
           )

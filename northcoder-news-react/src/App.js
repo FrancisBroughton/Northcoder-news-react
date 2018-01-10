@@ -4,7 +4,8 @@ import Articles from './components/Articles';
 import ArticlesById from './components/ArticlesById' 
 import Topics from './components/Topics'; 
 import Home from './components/Home';
-import pic from './css/image.jpg';
+import TopicById from './components/TopicById'
+
 
 import {
   BrowserRouter,
@@ -21,22 +22,18 @@ class App extends React.Component {
         <div className="main-container ">
 
           <nav className="navbar col-12">
-
-          <div className="pic col-2">
-          <img src={pic} alt="background pic" /> 
-          </div>        
          
           <div className="links col-6">
-            <h1> Northcoders News </h1>
             <ul>
               <li>
               <i className="material-icons">favorite_border</i> 
               <Link to='/'> Home </Link> 
               </li>
-
+              
               <li>
               <i className="material-icons">description</i>
               <Link to='/Articles'> Articles </Link>
+            
               </li>
 
               <li>
@@ -48,9 +45,11 @@ class App extends React.Component {
           </div> 
 
           <div className="searchbox col-4">
-            <form>
-              <input type='text' placeholder="Search..." /> 
-              <input type='submit' value='search' /> 
+            <form className="form-inline">
+              <div className="form-group">
+              <input type='text' placeholder="Search..." className="form-control" /> 
+              <input type='submit' value='search' className="btn btn-dark" /> 
+              </div>
             </form>
           </div>
 
@@ -59,8 +58,9 @@ class App extends React.Component {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/Articles' component={Articles} />
-            <Route exact path='/Articles/:articles_id' component={ArticlesById} />
+            <Route exact path='/Articles/:articles_id/comments' component={ArticlesById} />
             <Route exact path='/Topics' component={Topics} />
+            <Route exact path='/Topics/:topics_id/:slug/articles' component={TopicById} />
           </Switch>
       </div> 
       </BrowserRouter>

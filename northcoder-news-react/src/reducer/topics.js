@@ -33,7 +33,7 @@ export default (prevState = initialState, action) => {
     payload: []
     }); 
 
-    case types.FETCH_ARTICLES_BY_SLUG_SUCCESS:
+    case types.FETCH_ARTICLES_BY_ID_SUCCESS:
     return Object.assign({}, prevState, {
     loading: !prevState.loading,
     topicError: null ,
@@ -41,7 +41,7 @@ export default (prevState = initialState, action) => {
     }); 
 
 
-    case types.FETCH_ARTICLES_BY_SLUG_FAILURE:
+    case types.FETCH_ARTICLES_BY_ID_FAILURE:
     return Object.assign({}, prevState, {
     loading: false,
     topicError: action.topicError,

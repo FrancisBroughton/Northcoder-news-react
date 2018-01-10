@@ -21,16 +21,16 @@ export function fetchTopicsFailure(error) {
     };
 }
 
-export function fetchArticlesBySlugSuccess(data){
+export function fetchArticlesByIdSuccess(data){
     return {
-        type : types.FETCH_ARTICLES_BY_SLUG_SUCCESS,
+        type : types.FETCH_ARTICLES_BY_ID_SUCCESS,
         topicPayload: data 
     }
 }
 
-export function fetchArticlesBySlugFailure(error) {
+export function fetchArticlesByIdFailure(error) {
     return {
-        type: types.FETCH_ARTICLES_BY_SLUG_FAILURE,
+        type: types.FETCH_ARTICLES_BY_ID_FAILURE,
         topicError: error
     };
 }
@@ -47,15 +47,15 @@ export function fetchAllTopics (data) {
     }
 }
 
-export function fetchArticlesBySlug (slug) {
+export function fetchArticlesById (id) {
     return function(dispatch){
-        axios.get(`https://jredfern-northcoders-news-api.herokuapp.com/api/topics/${slug}/articles`)
+        axios.get(`https://jredfern-northcoders-news-api.herokuapp.com/api/topics/${id}/articles`)
         .then(res => {
             console.log(res.data)
-            dispatch(fetchArticlesBySlugSuccess(res.data))
+            dispatch(fetchArticlesByIdSuccess(res.data))
         })
         .catch(err=> {
-            dispatch(fetchArticlesBySlugFailure(err))
+            dispatch(fetchArticlesByIdFailure(err))
         })
     }
 }

@@ -105,7 +105,10 @@ export function addComments(comment){
             comment: comment.comment
         })
         .then (res => {
-            dispatch(addCommentsSuccess(res.data.comment))
+            dispatch(addCommentsSuccess(res.data.comment));
+        })
+        .then(res => {
+            dispatch(fetchCommentsByArticlesId(comment.id));
         })
         .catch (err => {
             dispatch(addCommentsFailure(err))

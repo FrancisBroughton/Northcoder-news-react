@@ -59,7 +59,21 @@ export function addCommentsFailure(error) {
     return {
         type: types.ADD_COMMENTS_FAILURE,
         commentsError: error
+    };   
+}
+
+export function deleteCommentsSuccess(data) {
+    return {
+        type: types.DELETE_COMMENTS_SUCCESS,
+        comments: data
     };
+}
+
+export function deleteCommentsFailure(error) {
+    return {
+        type: types.DELETE_COMMENTS_FAILURE,
+        commentsError: error
+    };   
 }
 
 export function fetchAllArticles(data){
@@ -100,7 +114,6 @@ export function fetchCommentsByArticlesId(id){
 
 export function addComments(comment){
     return function (dispatch) {
-        console.log(comment.comment, " HERE!");
         axios.post(`https://jredfern-northcoders-news-api.herokuapp.com/api/articles/${comment.id}/comments`,{
             comment: comment.comment,
             username: comment.username
@@ -117,19 +130,18 @@ export function addComments(comment){
     }   
 }
 
-export function deleteComments(id){
+export function deleteComments(id,art_id){
     return function (dispatch) {
-        axios.post(`https://jredfern-northcoders-news-api.herokuapp.com/api/articles/${id}/comments`,{
-            //comment: comment.comment
+        axios.delete(`https://jredfern-northcoders-news-api.herokuapp.com/api/comments/${id}`,{
         })
         .then (res => {
-            dispatch(addCommentsSuccess(res.data.comment));
+            dispatch(deleteCommentsSuccess(res.data));
         })
         .then(res => {
-            dispatch(fetchCommentsByArticlesId(id));
+            dispatch(fetchCommentsByArticlesId(art_id));
         })
         .catch (err => {
-            dispatch(addCommentsFailure(err))
+            dispatch(deleteCommentsFailure(err))
         })    
     }   
 }

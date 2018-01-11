@@ -99,7 +99,6 @@ export function fetchCommentsByArticlesId(id){
 }
 
 export function addComments(comment){
-    console.log("*********",comment)
     return function (dispatch) {
         axios.post(`https://jredfern-northcoders-news-api.herokuapp.com/api/articles/${comment.id}/comments`,{
             comment: comment.comment

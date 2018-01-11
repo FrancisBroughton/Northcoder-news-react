@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchArticlesByArticlesId, fetchCommentsByArticlesId } from '../actions/articles'
+import { fetchArticlesByArticlesId, fetchCommentsByArticlesId, addComments } from '../actions/articles'
 import '../css/Articles.css';
 
 class ArticlesById extends Component {
@@ -8,7 +8,8 @@ class ArticlesById extends Component {
         super(props)
         this.state = {
             username : '',
-            comment : ''
+            comment : '',
+            allComments: []
         }
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handleCommentsChange = this.handleCommentsChange.bind(this);
@@ -28,11 +29,20 @@ class ArticlesById extends Component {
     }
     handleSubmit(event) {
         event.preventDefault()
-        this.setState({
+        let comment = {
+            comment: this.state.comment,
             username: this.state.username,
-            comment:this.state.comment
-             
-        })
+            id: this.props.match.params.articles_id
+        }
+        this.props.addComments(comment)
+        this.props.fetchCommentsByArticlesId(comment.id)
+        
+        this.setState(
+            {
+                comment : '',
+                username : ''
+            }
+        )
     }
 
     componentDidMount() {
@@ -42,35 +52,36 @@ class ArticlesById extends Component {
     }
 
     render() {
+        if (this.props.articles.articles == null) return <p>Loading...</p>
         return (
-            <div className="body">
-
-                <div className="artById">
-                <h2>{this.props.articles.title}</h2>
+            <div className="body container">
+                <div className="col-md-12">
+                    <h1> Northcoders News </h1>
+                </div>
+                <div className="article ">
+                <h2>{this.props.articles.articles.title}</h2>
 
                 <ul>
-                    <li>{this.props.articles.body} </li> <br />
-                    <li> By {this.props.articles.created_by} </li>
-                    <li> Votes {this.props.articles.votes} </li>
+                    <li>{this.props.articles.articles.body} </li> <br />
+                    <li> By {this.props.articles.articles.created_by} </li>
+                    <li> Votes {this.props.articles.articles.votes} </li>
                 </ul>
                 </div>
-                <form className="commentBox">
+                <form className="article" onSubmit={this.handleSubmit}>
                 <h3> Add comments here </h3>
-                    Username:<br/>
-                    <input type="text" className="username" onSubmit={this.handleUsernameSubmit} value={this.state.username} 
+                    <input name="username" type="text" placeholder="Username.." className="username form-control" value={this.state.username} 
                     onChange={this.handleUsernameChange.bind(this)}
                     />
-                    <br/><br/>
-
-                    <textarea type="text" className="submitComment" onSubmit={this.handleCommentsSubmit} value={this.state.comment}
-                    onChange={this.handleCommentsChange.bind(this)}/>
                     <br/>
-                    
-                    <input type="submit" className="submitButton" value="Submit" />
-                    <input type="reset" className="submitButton" value="Reset"/>
+
+                    <textarea name="comment" type="text" placeholder="Post a comment.." className="submitComment form-control"  value={this.state.comment}
+                    onChange={this.handleCommentsChange.bind(this)}/>
+                    <input type='hidden' value={this.props.match.params.articles_id} name='id'/>
+                    <input type="submit" className="submitButton btn btn-dark" value="Submit" />
+                    <input type="reset" className="submitButton btn btn-dark" value="Reset"/>
                    
                 </form>
-                <div className="commentSection">
+                <div className="article">
                 <h3>Comments</h3>
 
                 {this.props.comments && this.props.comments.map((comment, i) => {
@@ -106,6 +117,9 @@ function mapDispatchToProps(dispatch) {
         },
         fetchCommentsByArticlesId: (id) => {
         dispatch(fetchCommentsByArticlesId(id));
+        },
+        addComments:(comments) => {
+            dispatch(addComments(comments))
         }
     };
 }

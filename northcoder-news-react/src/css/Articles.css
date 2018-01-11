@@ -65,3 +65,9 @@ h3 {
     font-size: 25px;
     font-weight: bold
 }
+
+.comment .submitButton {
+    margin-left: 20px;
+    margin-bottom: 10px;
+    background-color: rgb(197, 11, 11)
+}

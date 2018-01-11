@@ -34,21 +34,17 @@ class ArticlesById extends Component {
             username: this.state.username,
             id: this.props.match.params.articles_id
         }
-        this.props.addComments(comment)
-        this.props.fetchCommentsByArticlesId(comment.id)
+        this.props.addComments(comment);
         
-        this.setState(
-            {
-                comment : '',
-                username : ''
-            }
-        )
+        this.setState({
+            comment : '',
+            username : ''
+        })
     }
 
     componentDidMount() {
         this.props.fetchArticlesByArticlesId(this.props.match.params.articles_id)
         this.props.fetchCommentsByArticlesId(this.props.match.params.articles_id)
-
     }
 
     render() {
@@ -113,13 +109,13 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         fetchArticlesByArticlesId: (id) => {
-        dispatch(fetchArticlesByArticlesId(id));
+            dispatch(fetchArticlesByArticlesId(id));
         },
         fetchCommentsByArticlesId: (id) => {
-        dispatch(fetchCommentsByArticlesId(id));
+            dispatch(fetchCommentsByArticlesId(id));
         },
         addComments:(comments) => {
-            dispatch(addComments(comments))
+            dispatch(addComments(comments));
         }
     };
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchArticlesByArticlesId, fetchCommentsByArticlesId, addComments } from '../actions/articles'
+import { fetchArticlesByArticlesId, fetchCommentsByArticlesId, addComments, deleteComments } from '../actions/articles'
 import '../css/Articles.css';
 
 class ArticlesById extends Component {
@@ -8,8 +8,7 @@ class ArticlesById extends Component {
         super(props)
         this.state = {
             username : '',
-            comment : '',
-            allComments: []
+            comment : ''
         }
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handleCommentsChange = this.handleCommentsChange.bind(this);
@@ -40,6 +39,10 @@ class ArticlesById extends Component {
             comment : '',
             username : ''
         })
+    }
+    handleDeleteComment (event, comment_id) {
+        event.preventDefault()
+        this.props.deleteComments(comment_id,this.props.match.params.articles_id)
     }
 
     componentDidMount() {
@@ -81,13 +84,16 @@ class ArticlesById extends Component {
                 <h3>Comments</h3>
 
                 {this.props.comments && this.props.comments.map((comment, i) => {
+
                     return (
                         <div key={i} className="comment">
                             <ul>
                                 <li> {comment.body}</li>
                                 <li> By: {comment.created_by}</li>
                                 <li> Votes: {comment.votes}</li>
-                            </ul>
+                            </ul> 
+                            <input type="submit" className="submitButton btn btn-dark" value="Delete" onClick ={(event) => this.handleDeleteComment(event, comment._id)} />
+
                         </div>
                     )
                 })}
@@ -116,6 +122,9 @@ function mapDispatchToProps(dispatch) {
         },
         addComments:(comments) => {
             dispatch(addComments(comments));
+        },
+        deleteComments: (id,articles_id) => {
+            dispatch(deleteComments(id, articles_id))
         }
     };
 }

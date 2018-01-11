@@ -100,14 +100,33 @@ export function fetchCommentsByArticlesId(id){
 
 export function addComments(comment){
     return function (dispatch) {
+        console.log(comment.comment, " HERE!");
         axios.post(`https://jredfern-northcoders-news-api.herokuapp.com/api/articles/${comment.id}/comments`,{
-            comment: comment.comment
+            comment: comment.comment,
+            username: comment.username
         })
         .then (res => {
             dispatch(addCommentsSuccess(res.data.comment));
         })
         .then(res => {
             dispatch(fetchCommentsByArticlesId(comment.id));
+        })
+        .catch (err => {
+            dispatch(addCommentsFailure(err))
+        })    
+    }   
+}
+
+export function deleteComments(id){
+    return function (dispatch) {
+        axios.post(`https://jredfern-northcoders-news-api.herokuapp.com/api/articles/${id}/comments`,{
+            //comment: comment.comment
+        })
+        .then (res => {
+            dispatch(addCommentsSuccess(res.data.comment));
+        })
+        .then(res => {
+            dispatch(fetchCommentsByArticlesId(id));
         })
         .catch (err => {
             dispatch(addCommentsFailure(err))

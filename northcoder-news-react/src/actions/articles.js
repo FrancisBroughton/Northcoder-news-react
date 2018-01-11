@@ -48,9 +48,23 @@ export function fetchCommentsByArtIdFailure(error) {
     };
 }
 
+export function addCommentsSuccess(data) {
+    return {
+        type: types.ADD_COMMENTS_SUCCESS,
+        comments: data
+    };
+}
+
+export function addCommentsFailure(error) {
+    return {
+        type: types.ADD_COMMENTS_FAILURE,
+        commentsError: error
+    };
+}
+
 export function fetchAllArticles(data){
     return function (dispatch){
-        axios.get('https://northcoders-news-api.herokuapp.com/api/articles')
+        axios.get('https://jredfern-northcoders-news-api.herokuapp.com/api/articles')
         .then(res => {
             dispatch(fetchArticlesSuccess(res.data.articles))
         })
@@ -62,7 +76,7 @@ export function fetchAllArticles(data){
 
 export function fetchArticlesByArticlesId(id){
     return function (dispatch){
-        axios.get(`https://northcoders-news-api.herokuapp.com/api/articles/${id}`)
+        axios.get(`https://jredfern-northcoders-news-api.herokuapp.com/api/articles/${id}`)
         .then(res => {
             dispatch(fetchArticlesByArtIdSuccess(res.data))
         })
@@ -74,13 +88,27 @@ export function fetchArticlesByArticlesId(id){
 
 export function fetchCommentsByArticlesId(id){
     return function (dispatch){
-        axios.get(`https://northcoders-news-api.herokuapp.com/api/articles/${id}/comments`)
+        axios.get(`https://jredfern-northcoders-news-api.herokuapp.com/api/articles/${id}/comments`)
         .then(res => {
-            console.log(res.data)
             dispatch(fetchCommentsByArtIdSuccess(res.data.comments))
         })
         .catch (err => {
             dispatch(fetchCommentsByArtIdFailure(err))
         })
     }
+}
+
+export function addComments(comment){
+    console.log("*********",comment)
+    return function (dispatch) {
+        axios.post(`https://jredfern-northcoders-news-api.herokuapp.com/api/articles/${comment.id}/comments`,{
+            comment: comment.comment
+        })
+        .then (res => {
+            dispatch(addCommentsSuccess(res.data.comment))
+        })
+        .catch (err => {
+            dispatch(addCommentsFailure(err))
+        })    
+    }   
 }

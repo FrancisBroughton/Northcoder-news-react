@@ -7,8 +7,8 @@ import {
     fetchTopicsRequest,
     fetchTopicsSuccess,
     fetchTopicsFailure,
-    fetchArticlesBySlugSuccess,
-    fetchArticlesBySlugFailure,
+    fetchArticlesByIdSuccess,
+    fetchArticlesByIdFailure,
 } from '../actions/topics';
 
 const prevState = initialState || prevState;
@@ -48,17 +48,17 @@ describe ('topics reducer',() => {
             expect(newState.topics.loading).to.be.equal(false)
             expect(newState.topics.payload).to.be.eql([])
         });
-        it('handles fetchArticlesBySlugSuccess', () => {
+        it('handles fetchArticlesByIdSuccess', () => {
             const data = "hello";
-            const action = fetchArticlesBySlugSuccess(data);
+            const action = fetchArticlesByIdSuccess(data);
             const newState = topicsReducer(prevState, action);
             expect(newState.topics.topicPayload).to.be.equal("hello");
             expect(newState.topics.topicError).to.be.equal(null);
             expect(newState.topics.loading).to.be.equal(true);
         });
-        it('handles fetchArticlesBySlugFailure', () => {
+        it('handles fetchArticlesByIdFailure', () => {
             const error = 'error';
-            const action = fetchArticlesBySlugFailure(error);
+            const action = fetchArticlesByIdFailure(error);
             const newState = topicsReducer(prevState, action);
             expect(newState.topics.topicError).to.be.equal('error')
             expect(newState.topics.loading).to.be.equal(false)

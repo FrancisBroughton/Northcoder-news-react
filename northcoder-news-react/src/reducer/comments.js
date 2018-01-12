@@ -2,8 +2,9 @@ import * as types from '../types';
 
 export const initialState = {
     loading: false,
-    comments: [],
-    commentsError: null
+    commentsError: null,
+    commentsPayload: [],
+
   };
 
   export default (prevState = initialState, action) => {
@@ -13,28 +14,28 @@ export const initialState = {
     return Object.assign({}, prevState, {
         loading: !prevState.loading,
         commentsError: null,
-        comments: action.comments
+        commentsPayload: action.comments
     });
 
     case types.ADD_COMMENTS_FAILURE:
     return Object.assign({}, prevState, {
         loading: false,
         commentsError: action.commentsError,
-        comments: []
+        commentsPayload: []
     });
 
     case types.DELETE_COMMENTS_SUCCESS:
     return Object.assign({}, prevState, {
         loading: !prevState.loading,
         commentsError: null,
-        comments: action.comments
+        commentsPayload: action.comments
     });
 
     case types.DELETE_COMMENTS_FAILURE:
     return Object.assign({}, prevState, {
         loading: false,
         commentsError: action.commentsError,
-        comments: []
+        commentsPayload: []
     });
 
     default:

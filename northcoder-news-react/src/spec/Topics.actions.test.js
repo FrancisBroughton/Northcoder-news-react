@@ -22,17 +22,17 @@ describe('Actions for topics', () => {
             error: error
         });    
     });
-    it('should return the correct action for fetchArticlesBySlugSuccess', () => {
+    it('should return the correct action for fetchArticlesByIdSuccess', () => {
         const data = [1, 2, 3, 4];
-        expect(topicsActions.fetchArticlesBySlugSuccess(data)).to.eql({
-            type: types.FETCH_ARTICLES_BY_SLUG_SUCCESS,
+        expect(topicsActions.fetchArticlesByIdSuccess(data)).to.eql({
+            type: types.FETCH_ARTICLES_BY_ID_SUCCESS,
             topicPayload : data
         });
     });
-    it('should return the correct action for fetchArticlesBySlugFailure', () => {
+    it('should return the correct action for fetchArticlesByIdFailure', () => {
         const error = 'error';
-        expect(topicsActions.fetchArticlesBySlugFailure(error)).to.eql({
-            type: types.FETCH_ARTICLES_BY_SLUG_FAILURE,
+        expect(topicsActions.fetchArticlesByIdFailure(error)).to.eql({
+            type: types.FETCH_ARTICLES_BY_ID_FAILURE,
             topicError: error
         });    
     });

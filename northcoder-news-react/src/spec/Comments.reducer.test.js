@@ -19,7 +19,6 @@ describe('comments reducer', () => {
         it('returns the passed prevState if an unrecognised action is passed', () => {
             const action = {type:"whatever"};
             const newState = commentsReducer(prevState, action);
-            console.log(newState)
             expect(newState.comments).to.equal(prevState);
         });
         it('uses the initial state if no prevState is passed', () => {

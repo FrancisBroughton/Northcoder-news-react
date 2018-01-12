@@ -62,10 +62,9 @@ export function addCommentsFailure(error) {
     };   
 }
 
-export function deleteCommentsSuccess(data) {
+export function deleteCommentsSuccess() {
     return {
-        type: types.DELETE_COMMENTS_SUCCESS,
-        comments: data
+        type: types.DELETE_COMMENTS_SUCCESS
     };
 }
 
@@ -130,12 +129,12 @@ export function addComments(comment){
     }   
 }
 
-export function deleteComments(id,art_id){
+export function deleteComments(id, art_id){
     return function (dispatch) {
         axios.delete(`https://jredfern-northcoders-news-api.herokuapp.com/api/comments/${id}`,{
         })
         .then (res => {
-            dispatch(deleteCommentsSuccess(res.data));
+            dispatch(deleteCommentsSuccess());
         })
         .then(res => {
             dispatch(fetchCommentsByArticlesId(art_id));

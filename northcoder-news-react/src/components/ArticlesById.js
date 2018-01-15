@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchArticlesByArticlesId, fetchCommentsByArticlesId, addComments, deleteComments } from '../actions/articles'
 import '../css/Articles.css';
+import { editVoteCountByCommentId } from '../actions/comments';
 
 class ArticlesById extends Component {
     constructor(props) {
@@ -43,6 +44,11 @@ class ArticlesById extends Component {
     handleDeleteComment (event, comment_id) {
         event.preventDefault()
         this.props.deleteComments(comment_id,this.props.match.params.articles_id)
+    }
+
+    handleVoteCount (event, id, voteCount){
+        event.preventDefault()
+        this.props.editVoteCountByCommentId(this.props.match.params.articles_id, id, voteCount)
     }
 
     componentDidMount() {
@@ -92,8 +98,20 @@ class ArticlesById extends Component {
                                 <li> By: {comment.created_by}</li>
                                 <li> Votes: {comment.votes}</li>
                             </ul> 
-                            <input type="submit" className="submitButton btn btn-dark" value="Delete" onClick ={(event) => this.handleDeleteComment(event, comment._id)} />
+                            <div className='col-12 row'>
+                                <div className='col-6'>
+                            <a href="#" onClick ={(event) => this.handleVoteCount(event, comment._id, "up")} >
+                                <i className="fa fa-thumbs-up"></i> 
+                            </a>
 
+                            <a href="#" onClick ={(event) => this.handleVoteCount(event, comment._id, "down")} >
+                                <i className="fa fa-thumbs-down"></i> 
+                            </a> 
+                            </div>
+                            <div className='col-6 deleteComment'>
+                            <input type="submit" className="submitButton btn btn-dark" value="Delete" onClick ={(event) => this.handleDeleteComment(event, comment._id)} />
+                            </div>
+                            </div>
                         </div>
                     )
                 })}
@@ -125,6 +143,9 @@ function mapDispatchToProps(dispatch) {
         },
         deleteComments: (id,articles_id) => {
             dispatch(deleteComments(id, articles_id))
+        },
+        editVoteCountByCommentId: (art_id, id, voteCount) =>{
+            dispatch(editVoteCountByCommentId(art_id,id,voteCount))
         }
     };
 }

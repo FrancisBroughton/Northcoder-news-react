@@ -51,6 +51,18 @@ describe('Actions for Articles', () => {
             commentsError: error
         });
     });
+    it('should return the correct action for editVotesByArtIdSuccess', () => {
+        expect(articlesActions.editVoteCountByArtIdSuccess()).to.eql({
+            type: types.EDIT_VOTE_COUNT_BY_ART_ID_SUCCESS
+        });
+    });
+    it('should return the correct action for editVotesByArtIdFailure', () => {
+        const error = 'error';
+        expect(articlesActions.editVoteCountByArtIdFailure(error)).to.eql({
+            type: types.EDIT_VOTE_COUNT_BY_ART_ID_FAILURE,
+            voteCountError: error
+    });
+    });
 });   
 
     

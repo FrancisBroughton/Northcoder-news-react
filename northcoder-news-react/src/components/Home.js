@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchAllArticles } from '../actions/articles';
+import { fetchAllArticles, editVotesByArtId } from '../actions/articles';
 import '../css/Home.css';
 
 class Home extends Component {
+
+    handleVoteCount (event, id, voteCount) {
+        event.preventDefault();
+        this.props.editVotesByArtId(id, voteCount)
+    }
 
     componentDidMount() {
         this.props.fetchAllArticles()
@@ -26,9 +31,20 @@ class Home extends Component {
                                 <ul>
                                     <li> <span>Article: </span><Link to={`/Articles/${article._id}/comments`}>{article.title}</Link></li>
                                     <li> <span>Created By: </span>{article.created_by}</li> 
-                                    <li> <span>Votes: </span>{article.votes}</li><br />
-                                    <li> {article.body}</li>
+                                    <li> {article.body}</li><br/>
+                                    <li> <span>Votes: </span>{article.votes}</li>
                                 </ul>
+
+                                    <a href="#" onClick ={(event) => this.handleVoteCount(event, article._id, "up")} >
+                                        <i className="fa fa-thumbs-up"></i> 
+                                    </a>
+
+                                    <a href="#" onClick ={(event) => this.handleVoteCount(event, article._id, "down")} >
+                                        <i className="fa fa-thumbs-down"></i> 
+                                    </a>  
+                                    
+                                    
+                                    
                             </div>
                         )
                 })}
@@ -48,6 +64,9 @@ function mapDispatchToProps(dispatch) {
     return {
         fetchAllArticles: (data) => {
             dispatch(fetchAllArticles());
+        },
+        editVotesByArtId: (id, voteCount) => {
+            dispatch(editVotesByArtId(id, voteCount));
         }
     };
 }

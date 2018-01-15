@@ -75,6 +75,20 @@ export function deleteCommentsFailure(error) {
     };   
 }
 
+export function editVoteCountByArtIdSuccess() {
+    return {
+        type: types.EDIT_VOTE_COUNT_BY_ART_ID_SUCCESS
+    };   
+}
+
+export function editVoteCountByArtIdFailure(error) {
+    return {
+        type: types.EDIT_VOTE_COUNT_BY_ART_ID_FAILURE,
+        voteCountError: error
+    };   
+}
+
+
 export function fetchAllArticles(data){
     return function (dispatch){
         axios.get('https://jredfern-northcoders-news-api.herokuapp.com/api/articles')
@@ -143,4 +157,20 @@ export function deleteComments(id, art_id){
             dispatch(deleteCommentsFailure(err))
         })    
     }   
+}
+
+export function editVotesByArtId (id, voteCount){
+    return function (dispatch) {
+        axios.put(`https://jredfern-northcoders-news-api.herokuapp.com/api/articles/${id}?votes=${voteCount}`,{
+        })
+        .then(res => {
+            dispatch(editVoteCountByArtIdSuccess());
+        })
+        .then(res => {
+            dispatch(fetchAllArticles())
+        } )
+        .catch (err => {
+            dispatch(editVoteCountByArtIdFailure(err))
+        })
+    }
 }

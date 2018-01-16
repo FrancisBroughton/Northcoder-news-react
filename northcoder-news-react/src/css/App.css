@@ -12,13 +12,14 @@
 }
 
 .navbar ul li i {
-  font-size: 16px;
+  font-size: 17px;
 }
 
- .navbar li {
-   display: inline-block;
-   margin-right: 10px;
- }
+.navbar li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
 .navbar {
   background-color: rgb(193, 17, 56);
   height :50px 

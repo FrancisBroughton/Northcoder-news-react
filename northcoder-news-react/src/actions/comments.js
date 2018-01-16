@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as types from '../types';
-import {fetchAllArticles, fetchCommentsByArticlesId} from './articles.js'
+import {fetchCommentsByArticlesId} from './articles.js'
 
 export function editVoteCountByCommentIdSuccess() {
     return {

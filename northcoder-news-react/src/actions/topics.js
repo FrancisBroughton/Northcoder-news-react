@@ -51,7 +51,6 @@ export function fetchArticlesById (id) {
     return function(dispatch){
         axios.get(`https://jredfern-northcoders-news-api.herokuapp.com/api/topics/${id}/articles`)
         .then(res => {
-            console.log(res.data)
             dispatch(fetchArticlesByIdSuccess(res.data))
         })
         .catch(err=> {

@@ -64,12 +64,11 @@ class ArticlesById extends Component {
                     <h1> Northcoders News </h1>
                 </div>
                 <div className="article ">
-                <h2>{this.props.articles.articles.title}</h2>
+                <h3>{this.props.articles.articles.title}</h3>
 
                 <ul>
+                    <li> <span> By </span> {this.props.articles.articles.created_by} </li>
                     <li>{this.props.articles.articles.body} </li> <br />
-                    <li> By {this.props.articles.articles.created_by} </li>
-                    <li> Votes {this.props.articles.articles.votes} </li>
                 </ul>
                 </div>
                 <form className="article" onSubmit={this.handleSubmit}>

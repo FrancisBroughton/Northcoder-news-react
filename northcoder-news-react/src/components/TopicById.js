@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { fetchArticlesById } from '../actions/topics';
 
 class TopicById extends Component{
-
     componentDidMount() {
         this.props.fetchArticlesById(this.props.match.params.topics_id)
       }
@@ -26,9 +25,9 @@ class TopicById extends Component{
                         <ul>
                             <li> <span>Article: </span> <Link to={`/Articles/${topic._id}/comments`}>{topic.title}</Link> </li>
                             <li> <span>Created By: </span>{topic.created_by}</li> 
-                            <li> <span>Votes: </span>{topic.votes}</li><br />
                             <li> {topic.body}</li>
                         </ul>
+
                     </div>
                 )
             })}
@@ -42,15 +41,15 @@ function mapStateToProps(state) {
         loading: state.topics.loading,
         topicError: state.topics.topicError,
         topics: state.topics.topicPayload
-    };
     }
-    function mapDispatchToProps(dispatch) {
+};
+
+function mapDispatchToProps(dispatch) {
     return {
         fetchArticlesById: (id) => {
             dispatch(fetchArticlesById(id));
         }
-    };
     }
-    
+};
                 
-    export default connect(mapStateToProps,mapDispatchToProps)(TopicById);
+export default connect(mapStateToProps,mapDispatchToProps)(TopicById);

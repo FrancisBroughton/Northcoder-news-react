@@ -10,7 +10,6 @@ class Topics extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div className="body container">
       <div className="col-md-12">

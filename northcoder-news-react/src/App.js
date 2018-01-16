@@ -4,8 +4,9 @@ import Articles from './components/Articles';
 import ArticlesById from './components/ArticlesById' 
 import Topics from './components/Topics'; 
 import Home from './components/Home';
-import TopicById from './components/TopicById'
-
+import TopicById from './components/TopicById';
+import Users from './components/Users';
+import Username from './components/Username';
 
 import {
   BrowserRouter,
@@ -33,12 +34,16 @@ class App extends React.Component {
               <li>
               <i className="material-icons">description</i>
               <Link to='/Articles'> Articles </Link>
-            
               </li>
 
               <li>
               <i className="material-icons">message</i>
               <Link to='/Topics'> Topics </Link>
+              </li>
+
+              <li>
+              <i className="material-icons">account_circle</i>
+              <Link to='/Users'> Users </Link>
               </li>
 
             </ul>
@@ -61,6 +66,9 @@ class App extends React.Component {
             <Route exact path='/Articles/:articles_id/comments' component={ArticlesById} />
             <Route exact path='/Topics' component={Topics} />
             <Route exact path='/Topics/:topics_id/:slug/articles' component={TopicById} />
+            <Route exact path='/Users' component={Users} />
+            <Route exact path='/Users/:username' component={Username} />
+
           </Switch>
       </div> 
       </BrowserRouter>
